@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\mental-health-blogapp",
+    "\\mental-health-blogapp\\public",
+    "\\mental-health-blogapp\\src",
+    "\\mental-health-blogapp\\src\\Components",
+    "\\mental-health-blogapp\\src\\Components\\Navbar",
+    "\\mental-health-blogapp\\src\\Components\\PostFeed",
+    "\\mental-health-blogapp\\src\\Components\\Sidebar",
+    "\\mental-health-blogapp\\src\\pages"
+  ],
+  "SelectedNode": "\\mental-health-blogapp\\src\\Components\\PostFeed\\PostFeed.css",
+  "PreviewInSolutionExplorer": false
+}
