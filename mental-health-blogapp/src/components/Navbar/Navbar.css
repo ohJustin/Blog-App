@@ -1,5 +1,46 @@
-.navbar {
-    background-color: #4caf50;
-    padding: 1rem;
-  }
-  
+/* Navbar.css */
+.custom-navbar {
+  background-color: #4caf50;
+  padding: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.custom-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 50px;
+}
+
+.custom-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.custom-logo {
+  height: 30px;
+  width: 30px;
+}
+
+.custom-app-name {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.custom-nav-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.custom-nav-btn {
+  text-transform: none;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.custom-nav-btn:hover {
+  color: #ffffff;
+  background-color: #3e8e41;
+  border-radius: 5px;
+}
