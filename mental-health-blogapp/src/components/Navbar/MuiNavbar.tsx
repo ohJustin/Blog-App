@@ -1,14 +1,13 @@
 import { AppBar, Toolbar, IconButton, Typography, Stack, Button } from "@mui/material";
-import MentalHealthIcon from "../assets/mental-health.png";
+import HealthIcon from '../../assets/mental-health.png';
 import React from "react";
 
-export const MuiNavbar = () => {
+const MuiNavbar = () => {
     return (
         <AppBar position='static'>
             <Toolbar>
-                <IconButton size='large' edge='start' color='inherit' aria-label='logo'>
-
-                    <MentalHealthIcon />
+                <IconButton size='small' edge='start' color='inherit' aria-label='logo'>
+                    <img src={HealthIcon} alt="Health Icon" />
                 </IconButton>
                 <Typography variant='h6' component='div'>
                     BRAINAPP
@@ -21,4 +20,6 @@ export const MuiNavbar = () => {
             </Toolbar>
         </AppBar>
     )
-}
+};
+
+export default MuiNavbar;
