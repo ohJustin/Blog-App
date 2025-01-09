@@ -6,10 +6,11 @@ import ProfilePg from './ProfilePage';
 import MuiNavbar from '../components/Navbar/MuiNavbar.tsx';
 
 /*
-    This is './' point
+    This is './profile' point
 */
 
-function HomePage() {
+
+function ProfilePage() {
   return (
     <div>
     <MuiNavbar position='static'/>
@@ -22,4 +23,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default ProfilePage;

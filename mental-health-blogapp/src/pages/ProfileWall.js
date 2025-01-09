@@ -1,15 +1,15 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePg from './HomePage';
-import ProfileWall from './ProfileWall';
+//import ProfileWall from './ProfileWall';
 import ProfilePg from './ProfilePage';
 import MuiNavbar from '../components/Navbar/MuiNavbar.tsx';
 
 /*
-    This is './' point
+    This is './myposts' point
 */
 
-function HomePage() {
+function ProfileWall() {
   return (
     <div>
     <MuiNavbar position='static'/>
@@ -22,4 +22,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default ProfileWall;

@@ -1,6 +1,6 @@
 /* Navbar.css */
 .custom-navbar {
-  background-color: #4caf50;
+  background-color: #6e2c05b4;
   padding: 0.5rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -30,7 +30,9 @@
 
 .custom-nav-buttons {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
+  font-size: 20rem;
+  border-radius: 20%;
 }
 
 .custom-nav-btn {
