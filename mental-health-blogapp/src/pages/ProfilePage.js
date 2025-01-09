@@ -1,9 +1,11 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import HomePg from './HomePage';
-import ProfileWall from './ProfileWall';
-import ProfilePg from './ProfilePage';
 import MuiNavbar from '../components/Navbar/MuiNavbar.tsx';
+
+// Pages
+import HomePg from './HomePage';
+import ProfileW from './ProfileWall';
+import ProfilePg from './ProfilePage';
 
 /*
     This is './profile' point
@@ -16,7 +18,7 @@ function ProfilePage() {
     <MuiNavbar position='static'/>
       <Routes>
         <Route path="/home" element={<HomePg />} />
-        <Route path="/profilewall" element={<ProfileWall />} />
+        <Route path="/profilewall" element={<ProfileW />} />
         <Route path="/profilepage" element={<ProfilePg />} />
       </Routes>
     </div>
