@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import MuiNavbar from '../components/Navbar/MuiNavbar.tsx';
 
@@ -6,6 +6,8 @@ import MuiNavbar from '../components/Navbar/MuiNavbar.tsx';
 import HomePg from './HomePage';
 import ProfileW from './ProfileWall';
 import ProfilePg from './ProfilePage';
+import CreatePost from './CreatePost';
+import ViewPost from './ViewPost';
 
 /*
     This is './profile' point
@@ -20,8 +22,11 @@ function ProfilePage() {
         <Route path="/home" element={<HomePg />} />
         <Route path="/profilewall" element={<ProfileW />} />
         <Route path="/profilepage" element={<ProfilePg />} />
+        <Route path="/create" element={<CreatePost />} />
+        <Route path="/view" element={<ViewPost />} />
       </Routes>
     </div>
+    
   );
 }
 
