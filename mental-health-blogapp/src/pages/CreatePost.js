@@ -1,7 +1,8 @@
 import React from 'react';
+import PostModal from '../components/PostpageComponents/PostModal';
 
 function CreatePost() {
-  return <div>Create a new post here!</div>;
+  <PostModal></PostModal>
 }
 
 export default CreatePost;

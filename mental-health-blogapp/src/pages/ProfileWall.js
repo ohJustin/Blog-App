@@ -23,14 +23,7 @@ function ProfileWall() {
 
   return (
     <div>
-    <MuiNavbar position='static'/>
-      <Routes>
-        <Route path="/home" element={<HomePg />} />
-        <Route path="/profilewall" element={<ProfileW />} />
-        <Route path="/profilepage" element={<ProfilePg />} />
-        <Route path="/create" element={<CreatePost />} />
-        <Route path="/view" element={<ViewPost />} />
-      </Routes>
+
     </div>
   );
 }
