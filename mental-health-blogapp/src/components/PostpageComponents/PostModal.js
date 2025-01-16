@@ -8,9 +8,28 @@ import {
     Button,
 } from '@mui/material';
 
-const PostModal = ({ open, onClose, onSubmit }) => {
+const PostModal = ({ onClose, onSubmit }) => {
+const [open, setOpen] = React.useState(false);
+ 
+    const handleClickCreate = () => {
+        setOpen(true);
+    }
+
+    const handleClose = () => {
+        setOpen(false);
+      };
+
+    
+
     return (
-        <Dialog open={open} onClose={onClose}>
+        <React.Fragment>
+        <Button variant="outlined" onClick={handleClickCreate}>
+            Create
+        </Button>
+        <Dialog 
+            open={open}
+            onClose={onClose}
+        >
             <DialogTitle>Create a New Post</DialogTitle>
             <DialogContent>
                 <TextField
@@ -30,14 +49,15 @@ const PostModal = ({ open, onClose, onSubmit }) => {
                 />
             </DialogContent>
             <DialogActions>
-                <Button onClick={onClose} color="secondary">
+                <Button onClick={handleClose} color="secondary">
                     Cancel
                 </Button>
-                <Button onClick={onSubmit} color="primary">
+                <Button type="submit" color="primary">
                     Submit
                 </Button>
             </DialogActions>
         </Dialog>
+    </React.Fragment>
     );
 };
 
