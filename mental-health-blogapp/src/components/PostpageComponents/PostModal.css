@@ -1,4 +1,7 @@
 /* PostModal.css */
+
+
+/* Button needs visual work. Alignment of the arrow is too far right upon span:after */
 .custom-create-button {
     display: inline-block;
     border-radius: 4px;
@@ -9,6 +12,7 @@
     font-size: 28px;
     padding: 20px;
     width: 175px;
+    height: 80px;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
