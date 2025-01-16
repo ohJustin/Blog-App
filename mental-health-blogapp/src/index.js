@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import HomePage from './pages/HomePage';
+// import HomePage from './pages/HomePage';
+import LandingPage from './pages/LandingPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-        <HomePage/>
+        <LandingPage/>
     </BrowserRouter>    
   </React.StrictMode>
 );

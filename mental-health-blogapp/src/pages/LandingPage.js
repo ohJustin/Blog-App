@@ -4,10 +4,10 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import MuiNavbar from '../components/Navbar/MuiNavbar.tsx';
 
 // Pages
-import HomePg from './HomePage.js';
+import MainPg from './MainPage.js';
 // import ProfileW from './ProfileWall';
-import ProfilePg from './ProfilePage';
-import CreatePost from './CreatePost';
+import ProfilePg from './ProfilePage.js';
+import CreatePost from './CreatePost.js';
 // import ViewPost from './ViewPost';
 
 /*
@@ -22,11 +22,11 @@ const Layout = ({ children }) => (
 );
 
 
-function HomePage() {
+function LandingPage() {
   return (
     <Layout>
       <Routes>
-        <Route path="/home" element={<HomePg />} />
+        <Route path="/" element={<MainPg />} />
         {/* Bad naming convention on line 24. This is the "My Posts" */}
         <Route path="/myposts" element={<CreatePost />} /> 
         <Route path="/profile" element={<ProfilePg />} />
@@ -35,4 +35,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default LandingPage;
