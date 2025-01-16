@@ -1,4 +1,5 @@
 import React from 'react';
+import './PostModal.css';
 import {
     Dialog,
     DialogTitle,
@@ -23,8 +24,10 @@ const [open, setOpen] = React.useState(false);
 
     return (
         <React.Fragment>
-        <Button variant="outlined" onClick={handleClickCreate}>
-            Create
+        <Button class="custom-create-button"
+            onClick={handleClickCreate}
+        >
+            <span>Create</span>
         </Button>
         <Dialog 
             open={open}
