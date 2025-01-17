@@ -14,6 +14,7 @@ import CreatePost from './CreatePost.js';
     Refactor for single-layout.
               Wraps entire app in layout.
 */
+
 const Layout = ({ children }) => (
   <div>
     <MuiNavbar />
