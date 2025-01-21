@@ -7,7 +7,8 @@ import Person2Icon from '@mui/icons-material/Person2';
 import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import { CardMedia } from '@mui/material';
-import { CenterFocusStrong, CenterFocusStrongSharp, Person } from '@mui/icons-material';
+import headshot from '../assets/jayheadshots.jpg'
+import { BorderBottom, CenterFocusStrong, CenterFocusStrongSharp, Person } from '@mui/icons-material';
 
 /*
     This is './profile' point
@@ -15,18 +16,46 @@ import { CenterFocusStrong, CenterFocusStrongSharp, Person } from '@mui/icons-ma
 
 function ProfilePage() {
   return (
-    <Card sx={{ minWidth: 150, maxWidth: 500 }}>
-      <Person2Icon fontSize="xl4"/>
+    <Box
+      sx={{
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh' // Full viewport height
+      }}
+    >
+
+
+    <Card sx={{ minWidth: 445, minHeight: 445, width: 800, height: 950}}>
       <CardMedia
-        sx={{ height: 200}}
-        title="Your Profile"
+      
+        sx={{ width: 800, height: 300}}
+        image = {headshot}
+        title="profile image"
       />
+
       <CardContent>
-        <Typography>
-        Some Profile Content
+        <Typography
+        sx={{
+          display: 'flex',
+          justifyContent: 'center'
+        }}
+        >
+        @Jaydatech
       </Typography>
       </CardContent>
-    </Card> 
+
+      <CardActions
+        sx={{
+          display: 'flex',
+          position: 'bottom'
+        }}
+      >
+      <Button size="small">Save</Button>
+      <Button size="small">Cancel</Button>
+      </CardActions>
+    </Card>
+  </Box>
   );
 }
 
