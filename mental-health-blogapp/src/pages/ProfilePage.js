@@ -1,60 +1,76 @@
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Person2Icon from '@mui/icons-material/Person2';
 import React, { useState } from 'react';
-import Typography from '@mui/material/Typography';
-import { CardMedia } from '@mui/material';
-import headshot from '../assets/jayheadshots.jpg'
-import { BorderBottom, CenterFocusStrong, CenterFocusStrongSharp, Person } from '@mui/icons-material';
-
-/*
-    This is './profile' point
-*/
+import { Box, Card, CardMedia, CardContent, CardActions, Typography, Button, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import headshot from '../assets/jayheadshots.jpg';
 
 function ProfilePage() {
+  const [username, setUsername] = useState('@Jaydatech');
+  const [education, setEducation] = useState('');
+  const [isEdited, setIsEdited] = useState(false);
+
+  const handleInputChange = (setter) => (event) => {
+    setter(event.target.value);
+    setIsEdited(true);
+  };
+
   return (
     <Box
       sx={{
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        height: '100vh' 
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh'
       }}
     >
+      <Card sx={{ width: 800, height: 950, display: 'flex', flexDirection: 'column' }}>
+        <CardMedia
+          sx={{ width: 800, height: 300 }}
+          image={headshot}
+          title="profile image"
+        />
 
+        <CardContent sx={{ flexGrow: 1 }}>
+          <Typography
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              fontWeight: 'bold', // Bold font
+              fontSize: '1.95rem', // Larger font size
+              color: '#3f51b5' // Primary color
+            }}
+          >
+            {username}
+          </Typography>
+          <TextField
+            label="Username"
+            value={username}
+            onChange={handleInputChange(setUsername)}
+            fullWidth
+            margin="normal"
+          />
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Education</InputLabel>
+            <Select
+              value={education}
+              onChange={handleInputChange(setEducation)}
+              label="Education"
+            >
+              <MenuItem value="None"><em>None</em></MenuItem>
+              <MenuItem value="SIUE"><em>Southern Illinois University Edwardsville(SIUE)</em></MenuItem>
+            </Select>
+          </FormControl>
+        </CardContent>
 
-    <Card sx={{ width: 800, height: 950, display: 'flex', flexDirection: 'column'}}>
-      <CardMedia
-      
-        sx={{ width: 800, height: 300}}
-        image = {headshot}
-        title="profile image"
-      />
-
-      <CardContent sx={{ flexGrow: 1 }}>
-        <Typography
-        sx={{
-          display: 'flex',
-          justifyContent: 'center'
-        }}
+        <CardActions
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-end'
+          }}
         >
-        @Jaydatech
-      </Typography>
-      </CardContent>
-
-      <CardActions
-      sx={{
-        display: 'flex',
-        justifyContent: 'flex-end'
-      }}>
-      <Button size="small">Save</Button>
-      <Button size="small">Cancel</Button>
-      </CardActions>
-    </Card>
-  </Box>
+          <Button size="large" sx={{ fontSize: '1.15rem' }} disabled={!isEdited}>Save</Button>
+          <Button size="large" sx={{ fontSize: '1.15rem' }}>Cancel</Button>
+        </CardActions>
+      </Card>
+    </Box>
   );
 }
 
