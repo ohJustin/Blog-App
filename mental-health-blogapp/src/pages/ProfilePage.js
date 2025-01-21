@@ -21,12 +21,12 @@ function ProfilePage() {
         display: 'flex', 
         justifyContent: 'center', 
         alignItems: 'center', 
-        height: '100vh' // Full viewport height
+        height: '100vh' 
       }}
     >
 
 
-    <Card sx={{ minWidth: 445, minHeight: 445, width: 800, height: 950}}>
+    <Card sx={{ width: 800, height: 950, display: 'flex', flexDirection: 'column'}}>
       <CardMedia
       
         sx={{ width: 800, height: 300}}
@@ -34,7 +34,7 @@ function ProfilePage() {
         title="profile image"
       />
 
-      <CardContent>
+      <CardContent sx={{ flexGrow: 1 }}>
         <Typography
         sx={{
           display: 'flex',
@@ -46,11 +46,10 @@ function ProfilePage() {
       </CardContent>
 
       <CardActions
-        sx={{
-          display: 'flex',
-          position: 'bottom'
-        }}
-      >
+      sx={{
+        display: 'flex',
+        justifyContent: 'flex-end'
+      }}>
       <Button size="small">Save</Button>
       <Button size="small">Cancel</Button>
       </CardActions>
