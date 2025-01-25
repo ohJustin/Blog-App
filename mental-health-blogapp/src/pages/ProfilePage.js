@@ -5,6 +5,7 @@ import headshot from '../assets/jayheadshots.jpg';
 function ProfilePage() {
   const [username, setUsername] = useState('@Jaydatech');
   const [education, setEducation] = useState('');
+  const [wellnessInterests, setWellnessInterests] = useState('');
   const [isEdited, setIsEdited] = useState(false);
 
   const handleInputChange = (setter) => (event) => {
@@ -34,12 +35,13 @@ function ProfilePage() {
               display: 'flex',
               justifyContent: 'center',
               fontWeight: 'bold', // Bold font
-              fontSize: '1.95rem', // Larger font size
+              fontSize: '3.95rem', // Larger font size
               color: '#3f51b5' // Primary color
             }}
           >
             {username}
           </Typography>
+
           <TextField
             label="Username"
             value={username}
@@ -47,6 +49,7 @@ function ProfilePage() {
             fullWidth
             margin="normal"
           />
+
           <FormControl fullWidth margin="normal">
             <InputLabel>Education</InputLabel>
             <Select
@@ -58,6 +61,23 @@ function ProfilePage() {
               <MenuItem value="SIUE"><em>Southern Illinois University Edwardsville(SIUE)</em></MenuItem>
             </Select>
           </FormControl>
+
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Wellness-Interests</InputLabel>
+            <Select
+              value={wellnessInterests}
+              onChange={handleInputChange(setWellnessInterests)}
+              label="Wellness Interests"
+            >
+              <MenuItem value="None"><em>Stress-Management</em></MenuItem>
+              <MenuItem value="anx"><em>Anxiety</em></MenuItem>
+              <MenuItem value="wanx"><em>Work-Anxiety</em></MenuItem>
+              <MenuItem value="depr"><em>Depression</em></MenuItem>
+              <MenuItem value="self"><em>Self-Care</em></MenuItem>
+            </Select>
+          </FormControl>
+
+
         </CardContent>
 
         <CardActions
