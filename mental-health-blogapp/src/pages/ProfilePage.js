@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Card, CardMedia, CardContent, CardActions, Typography, Button, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { Box, Card, CardMedia, CardContent, CardActions, Typography, Button, TextField, Select, MenuItem, FormControl, InputLabel, Container } from '@mui/material';
 import headshot from '../assets/jayheadshots.jpg';
 
 function ProfilePage() {
@@ -14,17 +14,21 @@ function ProfilePage() {
   };
 
   return (
+    <Container maxWidth="lg">
     <Box
       sx={{
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100vh'
+        height: '100vh',
+        margin: '0 auto'
       }}
     >
-      <Card sx={{ width: 800, height: 950, display: 'flex', flexDirection: 'column' }}>
+      <Card sx={{ width: 1600, height: 1600, display: 'flex', flexDirection: 'column' }}>
         <CardMedia
-          sx={{ width: 800, height: 300 }}
+          sx={{
+            width: '100%',
+            height: 600 }}
           image={headshot}
           title="profile image"
         />
@@ -43,6 +47,8 @@ function ProfilePage() {
           </Typography>
 
           <TextField
+            sx={{ fontSize: '4.15rem' }}
+            size="large"
             label="Username"
             value={username}
             onChange={handleInputChange(setUsername)}
@@ -66,6 +72,7 @@ function ProfilePage() {
             <InputLabel>Wellness-Interests</InputLabel>
             <Select
               value={wellnessInterests}
+              size='xlarge'
               onChange={handleInputChange(setWellnessInterests)}
               label="Wellness Interests"
             >
@@ -91,6 +98,7 @@ function ProfilePage() {
         </CardActions>
       </Card>
     </Box>
+    </Container>
   );
 }
 
