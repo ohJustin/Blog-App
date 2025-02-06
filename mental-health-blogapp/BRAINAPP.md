@@ -23,4 +23,18 @@
     |>  Wellness Interests
 
 *NIGHT NOTE":
-  ' While being able to setup a blank card with some content. The Profile2Icon from MUI is night large enough. Work on fixing the size of the icon, and adding actual properties of a user's profile to the card(something they can click and update). 2:24AM 1/17/2025.
+  ' While being able to setup a blank card with some content. The Profile2Icon from MUI is night large enough. Work on fixing the size of the icon, and adding actual properties of a user's profile to the card(something they can click and update). 1/17/2025.
+
+
+
+
+                                            *CREATING POST OBJECT*
+IN PROGRESS... 5:51PM
+2/6/2025
+
+*SOFTWARE STACK NOTE*
+  --Firebase + .NET
+  ---.NET for API endpoints, processing, security
+  ----Firebase for Hosting + Storage for scalable frontend/back-end
+
+                                            *Unhandled issue with user not being logged in on submission*

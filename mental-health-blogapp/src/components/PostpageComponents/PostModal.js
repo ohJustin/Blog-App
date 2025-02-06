@@ -1,5 +1,6 @@
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db, auth } from '../../firebaseConfig';
 import React, { useState } from 'react';
-import Axios from 'axios';
 import './PostModal.css';
 import {
     Dialog,
@@ -22,9 +23,9 @@ const data = {
 
 const PostModal = ({ onClose, onSubmit }) => {
     const [open, setOpen] = React.useState(false);
-    //for post axios...
     const [loading, setLoading] = useState(false);
-    const [data, setData] = useState(null);
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
     const [error, setError] = useState(null);
 
     const handleClickCreate = () => {
@@ -36,19 +37,23 @@ const PostModal = ({ onClose, onSubmit }) => {
     };
 
     const handleSubmit = async () => {
-
-    try {
-    setLoading(true);
-    const response = await Axios.post(url, data);
-    setData(response.data);
-    } catch(err){
-        setError(err);
-    } finally{
-        setLoading(false);
-    }
- };
-
-
+        try {
+            setLoading(true);
+            const docRef = await addDoc(collection(db, 'posts'), {
+                title,
+                content,
+                timestamp: serverTimestamp(),
+                userId: auth.currentUser.uid,
+            });
+            console.log("Document written with ID: ", docRef.id);
+            onSubmit();
+            handleClose();
+        } catch (err) {
+            setError(err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <React.Fragment>
@@ -69,6 +74,8 @@ const PostModal = ({ onClose, onSubmit }) => {
                         label="Title"
                         type="text"
                         fullWidth
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
                     />
                     <TextField
                         margin="dense"
@@ -77,6 +84,8 @@ const PostModal = ({ onClose, onSubmit }) => {
                         fullWidth
                         multiline
                         rows={4}
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
                     />
                 </DialogContent>
                 <DialogActions>
@@ -84,11 +93,10 @@ const PostModal = ({ onClose, onSubmit }) => {
                         Cancel
                     </Button>
                     <Button variant="contained" onClick={handleSubmit} disabled={loading}>
-                    Submit
+                        Submit
                     </Button>
                     {loading && <p>Loading...</p>}
                     {error && <p>Error: {error.message}</p>}
-                    {data && <p>Data: {JSON.stringify(data)}</p>}
                 </DialogActions>
             </Dialog>
         </React.Fragment>
