@@ -15,89 +15,106 @@ function ProfilePage() {
 
   return (
     <Container maxWidth="lg">
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        margin: '0 auto'
-      }}
-    >
-      <Card sx={{ width: 1600, height: 1600, display: 'flex', flexDirection: 'column' }}>
-        <CardMedia
-          sx={{
-            width: '100%',
-            height: 600 }}
-          image={headshot}
-          title="profile image"
-        />
-
-        <CardContent sx={{ flexGrow: 1 }}>
-          <Typography
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+          margin: '0 auto'
+        }}
+      >
+        <Card sx={{ width: 1600, height: 1600, display: 'flex', flexDirection: 'column', borderRadius: '24px' }}>
+          <CardMedia
             sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              fontWeight: 'bold', // Bold font
-              fontSize: '3.95rem', // Larger font size
-              color: '#3f51b5' // Primary color
+              width: '100%',
+              height: 600,
+              borderRadius: '24px'
             }}
-          >
-            {username}
-          </Typography>
-
-          <TextField
-            sx={{ fontSize: '4.15rem' }}
-            size="large"
-            label="Username"
-            value={username}
-            onChange={handleInputChange(setUsername)}
-            fullWidth
-            margin="normal"
+            image={headshot}
+            title="profile image"
           />
 
-          <FormControl fullWidth margin="normal">
-            <InputLabel>Education</InputLabel>
-            <Select
-              value={education}
-              onChange={handleInputChange(setEducation)}
-              label="Education"
+          <CardContent sx={{ flexGrow: 1 }}>
+            <Typography
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                fontWeight: 'bold', // Bold font
+                fontSize: '3.95rem', // Larger font size
+                color: '#3f51b5' // Primary color
+              }}
             >
-              <MenuItem value="None"><em>None</em></MenuItem>
-              <MenuItem value="SIUE"><em>Southern Illinois University Edwardsville(SIUE)</em></MenuItem>
-            </Select>
-          </FormControl>
+              {username}
+            </Typography>
 
-          <FormControl fullWidth margin="normal">
-            <InputLabel>Wellness-Interests</InputLabel>
-            <Select
-              value={wellnessInterests}
-              size='xlarge'
-              onChange={handleInputChange(setWellnessInterests)}
-              label="Wellness Interests"
+            <TextField
+              sx={{ fontSize: '4.15rem' }}
+              size="large"
+              label="Username"
+              value={username}
+              onChange={handleInputChange(setUsername)}
+              fullWidth
+              margin="normal"
+            />
+
+            <FormControl fullWidth margin="normal">
+              <InputLabel>Education</InputLabel>
+              <Select
+                value={education}
+                onChange={handleInputChange(setEducation)}
+                label="Education"
+              >
+                <MenuItem value="None"><em>None</em></MenuItem>
+                <MenuItem value="High School">High School</MenuItem>
+                <MenuItem value="Bachelor's">Bachelor's</MenuItem>
+                <MenuItem value="Master's">Master's</MenuItem>
+                <MenuItem value="PhD">PhD</MenuItem>
+              </Select>
+            </FormControl>
+          </CardContent>
+
+          <CardActions
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end'
+            }}
+          >
+            <Button
+              size="large"
+              sx={{
+                fontSize: '1.15rem',
+                borderRadius: '8px', // Rounded corners
+                backgroundColor: '#3f51b5', // Blue color for "SAVE"
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: '#303f9f', // Darker blue on hover
+                  boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)' // Subtle shadow on hover
+                }
+              }}
+              disabled={!isEdited}
             >
-              <MenuItem value="None"><em>Stress-Management</em></MenuItem>
-              <MenuItem value="anx"><em>Anxiety</em></MenuItem>
-              <MenuItem value="wanx"><em>Work-Anxiety</em></MenuItem>
-              <MenuItem value="depr"><em>Depression</em></MenuItem>
-              <MenuItem value="self"><em>Self-Care</em></MenuItem>
-            </Select>
-          </FormControl>
-
-
-        </CardContent>
-
-        <CardActions
-          sx={{
-            display: 'flex',
-            justifyContent: 'flex-end'
-          }}
-        >
-          <Button size="large" sx={{ fontSize: '1.15rem' }} disabled={!isEdited}>Save</Button>
-          <Button size="large" sx={{ fontSize: '1.15rem' }}>Cancel</Button>
-        </CardActions>
-      </Card>
-    </Box>
+              Save
+            </Button>
+            <Button
+              size="large"
+              sx={{
+                fontSize: '1.15rem',
+                borderRadius: '8px', // Rounded corners
+                backgroundColor: '#f44336', // Red color for "CANCEL"
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: '#d32f2f', // Darker red on hover
+                  boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)' // Subtle shadow on hover
+                },
+                marginLeft: '10px' // Space between buttons
+              }}
+            >
+              Cancel
+            </Button>
+          </CardActions>
+        </Card>
+      </Box>
     </Container>
   );
 }
