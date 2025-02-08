@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PostModal from '../components/PostpageComponents/PostModal';
 
-function CreatePost() {
+function ProfilePosts() {
 
   return (
     <div>
@@ -10,4 +10,4 @@ function CreatePost() {
   );
 }
 
-export default CreatePost;
+export default ProfilePosts;

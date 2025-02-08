@@ -37,4 +37,4 @@ IN PROGRESS... 5:51PM
   ---.NET for API endpoints, processing, security
   ----Firebase for Hosting + Storage for scalable frontend/back-end
 
-                                            *Unhandled issue with user not being logged in on submission*
+*Unhandled issue with user not being logged in on submission*

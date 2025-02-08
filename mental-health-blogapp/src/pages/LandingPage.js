@@ -7,7 +7,7 @@ import MuiNavbar from '../components/Navbar/MuiNavbar.tsx';
 import MainPg from './MainPage.js';
 // import ProfileW from './ProfileWall';
 import ProfilePg from './ProfilePage.js';
-import CreatePost from './CreatePost.js';
+import UserPost from './ProfilePosts.js';
 // import ViewPost from './ViewPost';
 
 /*
@@ -29,7 +29,7 @@ function LandingPage() {
       <Routes>
         <Route path="/" element={<MainPg />} />
         {/* Bad naming convention on line 24. This is the "My Posts" */}
-        <Route path="/myposts" element={<CreatePost />} /> 
+        <Route path="/myposts" element={<UserPost />} /> 
         <Route path="/profile" element={<ProfilePg />} />
       </Routes>
     </Layout>
