@@ -6,9 +6,9 @@ import React from "react";
 
 const navLinks = 
     [
-        { text: 'Main Posts', path: '/home' },
-        { text: 'My Posts', path: '/myposts' },
-        { text: 'Profile', path: '/profile' },
+        { text: 'Main Posts', path: 'home' },
+        { text: 'My Posts', path: 'myposts' },
+        { text: 'Profile', path: 'profile' },
     ];
   
 

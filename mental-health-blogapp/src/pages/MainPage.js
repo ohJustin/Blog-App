@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 
 /*
-    This is './' point
+    This is './home' point
 */
 
 

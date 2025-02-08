@@ -12,23 +12,24 @@ const withAuth = (Component) => {
             if (userLoggedIn()) {
                 setAuthenticated(true);
                 setLoading(false);
-            } else{
+            } else {
                 navigate('/login');
                 setLoading(false);
             }
         }, [navigate]);
-        if (loading){
-            return <h1>Loading...<CircularProgress /></h1>;
+
+        if (loading) {
+            return <div>Loading...</div>; // Render a loading indicator while checking authentication
         }
 
-        if (!authenticated){
-            return null;
+        if (!authenticated) {
+            return null; // Optionally render null or a different component if not authenticated
         }
 
         return <Component {...props} />;
     };
-    
-    return AuthenticatedComponent;
+
+    return <AuthenticatedComponent />;
 };
 
 export default withAuth;

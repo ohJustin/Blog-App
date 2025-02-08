@@ -12,9 +12,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/" element={withAuth(LandingPage)}>
-          <Route index element={withAuth(<MainPg />)} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="" element={LandingPage}>
+          <Route path ="home" index element={<MainPg />} />
           <Route path="myposts" element={<CreatePost />} />
           <Route path="profile" element={<ProfilePg />} />
           <Route path="view-posts" element={<ViewPosts />} />
