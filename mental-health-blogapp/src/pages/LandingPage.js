@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import MuiNavbar from '../components/Navbar/MuiNavbar.tsx';
 import withAuth from '../authentification/withAuth';
+import { userLoggedIn } from '../authentification/userAuth';
 
 // Pages
 import MainPg from './MainPage.js';
@@ -10,19 +11,16 @@ import UserPost from './ProfilePosts.js';
 import LoginPage from './LoginPage.js';
 // import ViewPost from './ViewPost';
 
-/*
-    Refactor for single-layout.
-              Wraps entire app in layout.
-*/
-
-const Layout = ({ children }) => (
+const Layout = ({ children, isAuthenticated }) => (
   <div>
-    <MuiNavbar />
+    {<MuiNavbar />}
     {children}
   </div>
 );
 
 function LandingPage() {
+  //const isAuthenticated = userLoggedIn();
+
   return (
     <Layout>
       <Routes>

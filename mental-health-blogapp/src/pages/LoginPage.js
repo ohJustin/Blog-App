@@ -4,10 +4,12 @@ import { Button, Container, Typography, Box, Avatar, Paper } from '@mui/material
 import GoogleIcon from '@mui/icons-material/Google';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
     const [loggedIn, setLoggedIn] = useState(userLoggedIn());
     const [user, setUser] = useState(getCurrentUser());
+    const navigate = useNavigate();
 
     const signIn = async () => {
         try {
@@ -28,6 +30,11 @@ const LoginPage = () => {
             console.error('Issue signing out:', err);
         }
     };
+
+    const navHomePage = () => {
+        // Navigate to home page
+        navigate('/home');
+    }
 
     return (
         <Container maxWidth="lg"> {/* Increased the maxWidth to 'lg' */}
@@ -54,7 +61,17 @@ const LoginPage = () => {
                         >
                             Sign Out
                         </Button>
+                        <Button
+                            variant="contained"
+                            color="success"
+                            onClick={navHomePage}
+                            startIcon={<LogoutIcon />}
+                            sx={{ marginTop: 3 }}
+                        >
+                            Go To Home Page
+                        </Button>
                     </Box>
+
                 ) : (
                     <Button
                         variant="contained"

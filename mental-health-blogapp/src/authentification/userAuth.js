@@ -25,7 +25,7 @@ export const signOutUser = async () => {
 };
 
 // User logged in status
-export const userLoggedIn = () => {
+export const  userLoggedIn = () => {
     return auth.currentUser !== null;
 };
 

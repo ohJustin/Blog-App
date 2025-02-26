@@ -16,7 +16,6 @@ const MuiNavbar = () =>
     {
         return (
         <AppBar position="static" classes={ { root: 'custom-navbar' } }>
-            console.log('Navbar rendered');
             <Toolbar classes={{ root: 'custom-toolbar' }} >
 
             <IconButton size="large" edge="start" color="inherit" aria-label="logo" className="custom-logo-container">
