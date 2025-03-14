@@ -17,7 +17,7 @@ function App() {
           <Route path ="home" index element={<MainPg />} />
           <Route path="myposts" element={<CreatePost />} />
           <Route path="profile" element={<ProfilePg />} />
-          <Route path="view-posts" element={<ViewPosts />} />
+          {/* <Route path="view-posts" element={<ViewPosts />} /> May not be needed? */}
         </Route>
       </Routes>
     </Router>
