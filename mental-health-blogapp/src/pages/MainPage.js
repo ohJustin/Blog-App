@@ -14,12 +14,12 @@ const posts = [
     userAvatar: 'path/to/avatar.jpg',
     date: 'March 13, 2025',
     content: 'This is a sample post content.',
-    image: 'path/to/image.jpg',
+    image: '../assets/jayheadshots.jpg',
   },
   {
     id: 2,
     username: '@AnotherUser',
-    userAvatar: 'path/to/avatar2.jpg',
+    userAvatar: '../assets/jayheadshots.jpg',
     content: 'This is another sample post content.',
     timeStamp: 'March 14, 2025',
     userId: 1
