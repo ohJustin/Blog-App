@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { userLoggedIn } from './userAuth';
+import { userLoggedIn, getAuthInstance } from './userAuth';
 
 const withAuth = (Component) => {
     const AuthenticatedComponent = (props) => {

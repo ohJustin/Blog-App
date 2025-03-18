@@ -1,5 +1,5 @@
 import { auth, provider } from '../firebaseConfig';
-import { signInWithPopup, signOut } from 'firebase/auth';
+import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
 
 // Sign in with Google
 export const signInWithGoogle = async () => {
@@ -32,4 +32,12 @@ export const  userLoggedIn = () => {
 // Get current user
 export const getCurrentUser = () => {
     return auth.currentUser;
+};
+
+// Get auth instance
+export const getAuthInstance = () => {
+    if (!auth) {
+        throw new Error('Auth instance not found');
+    }
+    return auth;
 };

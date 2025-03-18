@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { signInWithGoogle, signOutUser, userLoggedIn, getCurrentUser } from '../authentification/userAuth';
+import { signInWithGoogle, signOutUser, userLoggedIn, getCurrentUser, getAuthInstance } from '../authentification/userAuth';
 import { Button, Container, Typography, Box, Avatar, Paper } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from 'react-router-dom';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const LoginPage = () => {
     const [loggedIn, setLoggedIn] = useState(userLoggedIn());
@@ -12,13 +13,10 @@ const LoginPage = () => {
     const navigate = useNavigate();
 
     const signIn = async () => {
-        try {
+            console.log('Attempting to sign in with Google...');
             await signInWithGoogle();
             setLoggedIn(userLoggedIn());
             setUser(getCurrentUser());
-        } catch (err) {
-            console.error('Issue signing in:', err);
-        }
     };
 
     const signOut = async () => {
@@ -71,7 +69,6 @@ const LoginPage = () => {
                             Go To Home Page
                         </Button>
                     </Box>
-
                 ) : (
                     <Button
                         variant="contained"

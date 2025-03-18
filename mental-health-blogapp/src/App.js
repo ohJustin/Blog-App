@@ -1,26 +1,44 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import LandingPage from './pages/LandingPage';
-import MainPg from './pages/MainPage';
-import ProfilePg from './pages/ProfilePage';
-import CreatePost from './pages/CreatePost';
-import ViewPosts from './pages/ViewPost';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import MuiNavbar from './components/Navbar/MuiNavbar.tsx';
 import withAuth from './authentification/withAuth';
+import { FirebaseAuthProvider, useFirebaseAuth } from './authentification/FireBaseAuthContext';
+
+// Pages
+import MainPg from './pages/MainPage.js';
+import ProfilePg from './pages/ProfilePage.js';
+import UserPost from './pages/ProfilePosts.js';
+import LoginPage from './pages/LoginPage.js';
+
+const Layout = ({ children }) => {
+  const { isAuthenticated } = useFirebaseAuth();
+  return (
+    <div>
+      {isAuthenticated && <MuiNavbar />} {/* Show Navbar if authenticated */}
+      {children}
+    </div>
+  );
+};
 
 function App() {
+  const { isAuthenticated } = useFirebaseAuth();
+
   return (
-    <Router>
-      <Routes>
-        {/* <Route path="login" element={<LoginPage />} /> */}
-        <Route path="" element={LandingPage}>
-          {/* <Route path ="home" index element={<MainPg />} /> */}
-          {/* <Route path="myposts" element={<CreatePost />} /> */}
-          {/* <Route path="profile" element={<ProfilePg />} /> */}
-          {/* <Route path="view-posts" element={<ViewPosts />} /> May not be needed? */}
-        </Route>
-      </Routes>
-    </Router>
+    <FirebaseAuthProvider>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Navigate to="home" />} /> {/* Redirect from root to /home */}
+          <Route
+            path="login"
+            element={isAuthenticated ? <Navigate to="/home" /> : <LoginPage />}
+          />
+          <Route path="home" element={withAuth(MainPg)} />
+          <Route path="myposts" element={withAuth(UserPost)} />
+          <Route path="profile" element={withAuth(ProfilePg)} />
+          <Route path="*" element={<Navigate to="home" />} /> {/* Redirect any undefined routes to /home */}
+        </Routes>
+      </Layout>
+    </FirebaseAuthProvider>
   );
 }
 
