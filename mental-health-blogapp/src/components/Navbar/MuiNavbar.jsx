@@ -6,9 +6,9 @@ import React from "react";
 
 const navLinks = 
     [
-        { text: 'Main Posts', path: 'home' },
-        { text: 'My Posts', path: 'myposts' },
-        { text: 'Profile', path: 'profile' },
+        { text: 'Main Posts', path: '/' },
+        { text: 'My Posts', path: '/myposts' },
+        { text: 'Profile', path: '/profile' },
     ];
   
 
@@ -16,6 +16,7 @@ const MuiNavbar = () =>
     {
         return (
         <AppBar position="static" classes={ { root: 'custom-navbar' } }>
+
             <Toolbar classes={{ root: 'custom-toolbar' }} >
 
             <IconButton size="large" edge="start" color="inherit" aria-label="logo" className="custom-logo-container">

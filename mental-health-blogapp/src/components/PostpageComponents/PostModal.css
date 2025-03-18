@@ -1,0 +1,50 @@
+/* PostModal.css */
+
+
+/* Button needs visual work. Alignment of the arrow is too far right upon span:after */
+.custom-create-button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #77ca38;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 175px;
+    height: 80px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.custom-create-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.custom-create-button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.custom-create-button:hover span {
+    padding-right: 25px;
+}
+
+.custom-create-button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+/* .custom-dialog {
+    dialog
+    minHeight: '80vh',
+    maxHeight: '80vh',
+} */
