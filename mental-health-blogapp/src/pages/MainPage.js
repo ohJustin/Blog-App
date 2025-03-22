@@ -1,59 +1,48 @@
-import React, { useState } from 'react';
 import { Container, Grid } from '@mui/material';
 import Post from '../components/PostpageComponents/PostCard.js';
 import PostModal from '../components/PostpageComponents/PostModal.js';
 import { db } from '../firebaseConfig.js';
 import { collection, getDocs } from 'firebase/firestore';
-
+import axiosInstance from '../services/axiosInstance';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
 // Sample posts data
-const posts = [
-  {
-    id: 1,
-    username: '@Jaydatech',
-    userAvatar: 'path/to/avatar.jpg',
-    date: 'March 13, 2025',
-    content: 'This is a sample post content.',
-    image: '../assets/jayheadshots.jpg',
-  },
-  {
-    id: 2,
-    username: '@AnotherUser',
-    userAvatar: '../assets/jayheadshots.jpg',
-    content: 'This is another sample post content.',
-    timeStamp: 'March 14, 2025',
-    userId: 1
-  },
-];
 
-              //  title,
-              //   content,
-              //   timestamp: serverTimestamp(),
-              //   userId: auth.currentUser.uid,
+//     id: 2,
+//     username: '@AnotherUser',
+//     userAvatar: '../assets/jayheadshots.jpg',
+//     content: 'This is another sample post content.',
+//     timeStamp: 'March 14, 2025',
+//     userId: 1
 
-// Test Retrieving All Documents (DELETE LATER)
-async function getAllDocs(collectionName)
-{
-  try
-  {
-    //const query = await db.collection(collectionName).get();
-    
-    const querySnapshot = await getDocs(collection(db, "posts"));
-    
-    querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
-    });
-
-  } catch (err) {
-    console.error("ISSUE FRETRIEVING DOCUMENTS: ", err);
-  }
-}
+//  title,
+//  content,
+//  timestamp: serverTimestamp(),
+//  userId: auth.currentUser.uid,
 
 
 function MainPage() {
-  React.useEffect(() => {
-    getAllDocs('posts'); // Replace 'posts' with your Firestore collection name
-  }, []);
+  // uses useState to store the posts data
+  const [posts, setPosts] = useState([]);
+
+  // gather post from firestore
+  useEffect(() => {
+    async function fetchPosts(){
+      try{
+        // use axios to get the posts from the firestore
+        const response = await axiosInstance.get('/api/firestore/posts');
+        // set the posts to the response data
+        setPosts(response.data);
+      } 
+      
+      catch (error) {
+        console.error("issue retrieving documents in MainPage.js " + error);
+      }
+    }
+
+    fetchPosts();
+  }), []; // Why the empty dependency array? This is to ensure that the useEffect hook only runs once when the component mounts -> which means?
 
   return (
     <div>
