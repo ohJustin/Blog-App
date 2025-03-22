@@ -1,4 +1,6 @@
+using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Firestore;
+
 
 namespace Firestore.Services
 {
@@ -9,31 +11,56 @@ namespace Firestore.Services
 
         public FirestoreService()
         {
+
+            // var credential = GoogleCredential.FromFile("path/to/service-account.json");
+            // FirebaseApp.Create(new AppOptions { Credential = credential });
+
             // Set the path to the Firebase Admin SDK
-            string jsonPath = @"E:\firebase_google_creds\mental-healthapp-firebase-firebase-adminsdk-fbsvc-f1b5e268fa.json";
+            //var credential = GoogleCredential.FromFile("../../mental-healthapp-firebase-firebase-adminsdk-fbsvc-f1b5e268fa.json");
+            string jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "mental-healthapp-firebase-firebase-adminsdk-fbsvc-f1b5e268fa.json");
+            jsonPath = Path.GetFullPath(jsonPath);
+            if (!File.Exists(jsonPath))
+            {
+                throw new FileNotFoundException("Firebase Admin SDK JSON file not found.", jsonPath);
+            }
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", jsonPath);
 
             // Create a connection to the Firestore database
-            string projectId = "mental-health-blogapp";
+            string projectId = "mental-healthapp-firebase";
+            _db = FirestoreDb.Create(projectId);
+            Console.WriteLine("Connected to Firestore!!! ◡̈");
+        }
+
+        public FirestoreService(IConfiguration configuration)
+        {
+            string jsonPath = configuration["GoogleCloud:CredentialsPath"];
+            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", jsonPath);
+
+            string projectId = configuration["GoogleCloud:ProjectId"];
             _db = FirestoreDb.Create(projectId);
             Console.WriteLine("Connected to Firestore!!! ◡̈");
         }
 
         public async Task<List<Dictionary<string, object>>> GetPostsAsync(string collectionName)
         {
-            // Get a reference to the collection
-            CollectionReference collectionRef = _db.Collection(collectionName);
-            // Get the documents in the collection
-            QuerySnapshot querySnapshot = await collectionRef.GetSnapshotAsync();
-
-            // Retrieve documents as a List<Dictionary<string, object>> | Then return them
-            List<Dictionary<string, object>> documents = new();
-            foreach (DocumentSnapshot doc in querySnapshot.Documents)
+            try
             {
-                documents.Add(doc.ToDictionary());
-            }
+                CollectionReference collectionRef = _db.Collection(collectionName);
+                QuerySnapshot querySnapshot = await collectionRef.GetSnapshotAsync();
 
-            return documents;
+                List<Dictionary<string, object>> documents = new();
+                foreach (DocumentSnapshot doc in querySnapshot.Documents)
+                {
+                    documents.Add(doc.ToDictionary());
+                }
+
+                return documents;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching documents from Firestore: {ex.Message}");
+                throw; // Re-throw the exception to let the controller handle it
+            }
         }
     }
 }

@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "4LlbhNR0joUP88GZnajJSkhx824jLFMnQo9+/jk2Yao=",
+  "Source": "blogapp-backend-services",
+  "BasePath": "_content/blogapp-backend-services",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

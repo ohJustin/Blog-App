@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\blogapp-backend-services.props" />
+</Project>
