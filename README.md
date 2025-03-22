@@ -6,7 +6,7 @@
 
 ## Features
 
-- 
+- **IN PROGRESS**
 
 ## Tech Stack
 
