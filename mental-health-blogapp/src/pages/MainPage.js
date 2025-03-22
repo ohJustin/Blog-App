@@ -3,7 +3,7 @@ import { Container, Grid } from '@mui/material';
 import Post from '../components/PostpageComponents/PostCard.js';
 import PostModal from '../components/PostpageComponents/PostModal.js';
 import { db } from '../firebaseConfig.js';
-import { collection } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 
 
 // Sample posts data
@@ -37,9 +37,10 @@ async function getAllDocs(collectionName)
   try
   {
     //const query = await db.collection(collectionName).get();
-    const query = await collection(db, collectionName).get()
     
-    query.forEach((doc) => {
+    const querySnapshot = await getDocs(collection(db, "posts"));
+    
+    querySnapshot.forEach((doc) => {
       console.log(doc.id, " => ", doc.data());
     });
 
@@ -47,22 +48,26 @@ async function getAllDocs(collectionName)
     console.error("ISSUE FRETRIEVING DOCUMENTS: ", err);
   }
 }
-getAllDocs("posts");
+
 
 function MainPage() {
+  React.useEffect(() => {
+    getAllDocs('posts'); // Replace 'posts' with your Firestore collection name
+  }, []);
+
   return (
     <div>
-    <PostModal />
+      <PostModal />
 
-    <Container maxWidth="md" sx={{ marginTop: 4 }}>
-      <Grid container spacing={2}>
-        {posts.map((post) => (
-          <Grid item xs={12} key={post.id}>
-            <Post post={post} />
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+      <Container maxWidth="md" sx={{ marginTop: 4 }}>
+        <Grid container spacing={2}>
+          {posts.map((post) => (
+            <Grid item xs={12} key={post.id}>
+              <Post post={post} />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
     </div>
   );
 }
