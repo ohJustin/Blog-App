@@ -42,7 +42,7 @@ function MainPage() {
     }
 
     fetchPosts();
-  }), []; // Why the empty dependency array? This is to ensure that the useEffect hook only runs once when the component mounts -> which means?
+  }, []); // Why the empty dependency array? This is to ensure that the useEffect hook only runs once when the component mounts -> which means?
 
   return (
     <div>

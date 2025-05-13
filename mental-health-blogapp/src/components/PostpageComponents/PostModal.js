@@ -21,7 +21,7 @@ const data = {
 };
 
 
-const PostModal = ({ onClose, onSubmit }) => {
+const PostModal = ({ onClose }) => {
     const [open, setOpen] = React.useState(false);
     const [loading, setLoading] = useState(false);
     const [title, setTitle] = useState('');
@@ -46,8 +46,9 @@ const PostModal = ({ onClose, onSubmit }) => {
                 userId: auth.currentUser.uid,
             });
             console.log("Document written with ID: ", docRef.id);
-            onSubmit();
             handleClose();
+            // Refresh the page to see the new post
+            window.location.reload();
         } catch (err) {
             setError(err);
         } finally {

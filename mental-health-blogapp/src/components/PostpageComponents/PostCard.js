@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Button } from '@mui/material';
 import { MoreVert as MoreVertIcon, Favorite as FavoriteIcon, Share as ShareIcon } from '@mui/icons-material';
+import { styled } from '@mui/system';
 
               //  title,
               //   content,
@@ -8,8 +9,16 @@ import { MoreVert as MoreVertIcon, Favorite as FavoriteIcon, Share as ShareIcon 
               //   userId: auth.currentUser.uid,
 
 const Post = ({ post }) => {
+  const StyledCard = styled(Card)({
+    marginBottom: '16px',
+    backgroundColor: 'white',
+    outline: '2px solid #ccc',
+    borderRadius: '8px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+  });
+
   return (
-    <Card sx={{ marginBottom: 2 }}>
+    <StyledCard>
       <CardHeader
         avatar={<Avatar src={post.userAvatar} />}
         action={
@@ -44,7 +53,7 @@ const Post = ({ post }) => {
           Read More
         </Button>
       </CardActions>
-    </Card>
+    </StyledCard>
   );
 };
 
