@@ -29,6 +29,20 @@ namespace Firestore.Controllers
             }
         }
 
+        [HttpGet("nicknames")]
+        public async Task<IActionResult> GetNickNameAsync(string userId)
+        {
+            try
+            {
+                var nickName = await _firestoreService.GetNickNameAsync(userId);
+                return Ok(nickName);
+            }
+            catch
+            {
+                return BadRequest("BadRequestResult - Error fetching nickname");
+            }
+        }
+
         [HttpPost("nicknames")]
         public async Task<IActionResult> SaveProfileAsync(ProfileDto profileDto)
         {

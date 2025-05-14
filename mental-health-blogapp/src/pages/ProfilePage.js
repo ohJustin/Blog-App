@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Card, CardMedia, CardContent, CardActions, Typography, Button, TextField, Select, MenuItem, FormControl, InputLabel, Container, Grid } from '@mui/material';
 import headshot from '../assets/jayheadshots.jpg';
 import axiosInstance from '../services/axiosInstance';
 import { db, auth } from '../firebaseConfig.js';
 
 function ProfilePage() {
-  const [username, setUsername] = useState('username');
+  const [username, setUsername] = useState('...');
   const [userId, setUserId] = useState(auth.currentUser.uid);
   //const [education, setEducation] = useState('');
   //const [wellnessInterests, setWellnessInterests] = useState('');
@@ -15,6 +15,27 @@ function ProfilePage() {
     setter(event.target.value);
     setIsEdited(true);
   };
+
+  // retrieve nickName for user from firestore - if it exists
+  useEffect(() => {
+    async function fetchNickName()
+    {
+      try
+      {
+        const response = await axiosInstance.get('/api/firestore/nicknames/${userId}');
+        if (response.data && response.data.nickName) {
+          setUsername(response.data.nickName);
+        } else {
+          setUsername('No nickname found');
+        }
+      }
+      catch(error)
+      {
+        console.error('Error fetching nickname:', error);
+      }
+    }
+    fetchNickName();
+  }, [userId]);
 
   const handleSave = async () => {
     try 

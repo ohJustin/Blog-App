@@ -62,6 +62,29 @@ namespace Firestore.Services
             }
         }
 
+        public async Task<String> GetNickNameAsync(string userId)
+        {
+            try
+            {
+                CollectionReference collectionRef = _db.Collection("nicknames");
+                QuerySnapshot querySnapshot = await collectionRef.GetSnapshotAsync();
+                
+                foreach (DocumentSnapshot doc in querySnapshot.Documents)
+                {
+                    if(doc.Id == userId)
+                    {
+                        return doc.GetValue<string>("nickName");
+                    }
+                }
+                return "No nickname found for the given userId.";
+            }
+
+            catch(Exception ex)
+            {
+                return "BadRequestResult - Error fetching nickname: " + ex.Message;
+            }
+        }
+
         public async Task<ActionResult<string>> SaveProfileAsync(string userId, string nickName)
         {
             try
