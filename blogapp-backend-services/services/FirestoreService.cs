@@ -1,5 +1,6 @@
 using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Firestore;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace Firestore.Services
@@ -11,12 +12,6 @@ namespace Firestore.Services
 
         public FirestoreService()
         {
-
-            // var credential = GoogleCredential.FromFile("path/to/service-account.json");
-            // FirebaseApp.Create(new AppOptions { Credential = credential });
-
-            // Set the path to the Firebase Admin SDK
-            //var credential = GoogleCredential.FromFile("../../mental-healthapp-firebase-firebase-adminsdk-fbsvc-f1b5e268fa.json");
             string jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "mental-healthapp-firebase-firebase-adminsdk-fbsvc-f1b5e268fa.json");
             jsonPath = Path.GetFullPath(jsonPath);
             if (!File.Exists(jsonPath))
@@ -60,6 +55,24 @@ namespace Firestore.Services
             {
                 Console.WriteLine($"Error fetching documents from Firestore: {ex.Message}");
                 throw; // Re-throw the exception to let the controller handle it
+            }
+        }
+
+        public async Task<ActionResult<string>> SaveProfileAsync(int userId, string nickName)
+        {
+            try
+            {
+                // Create a new document with the specified userId
+                CollectionReference collectionRef = _db.Collection("nicknames");
+                
+                // Add document with userId as the document ID
+                await collectionRef.Document(userId.ToString()).SetAsync(new { nickName = nickName });
+                return new OkObjectResult("Profile data saved successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Issue with saving profileData to Firestore: " + ex.Message);
+                return new BadRequestObjectResult("Error saving profile data: " + ex.Message);
             }
         }
     }

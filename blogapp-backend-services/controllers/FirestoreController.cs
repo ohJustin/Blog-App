@@ -27,5 +27,20 @@ namespace Firestore.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpPost("profile")]
+        public async Task<IActionResult> SaveProfileAsync([FromBody] int userId, string nickName)
+        {
+            try
+            {
+                var result = await _firestoreService.SaveProfileAsync(userId, nickName);
+                return Ok(result);
+            }
+
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }
