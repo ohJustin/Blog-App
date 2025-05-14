@@ -28,10 +28,14 @@ namespace Firestore.Services
 
         public FirestoreService(IConfiguration configuration)
         {
+            #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             string jsonPath = configuration["GoogleCloud:CredentialsPath"];
+            #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", jsonPath);
 
+            #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             string projectId = configuration["GoogleCloud:ProjectId"];
+            #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
             _db = FirestoreDb.Create(projectId);
             Console.WriteLine("Connected to Firestore!!! ◡̈");
         }
@@ -58,7 +62,7 @@ namespace Firestore.Services
             }
         }
 
-        public async Task<ActionResult<string>> SaveProfileAsync(int userId, string nickName)
+        public async Task<ActionResult<string>> SaveProfileAsync(string userId, string nickName)
         {
             try
             {
@@ -66,7 +70,7 @@ namespace Firestore.Services
                 CollectionReference collectionRef = _db.Collection("nicknames");
                 
                 // Add document with userId as the document ID
-                await collectionRef.Document(userId.ToString()).SetAsync(new { nickName = nickName });
+                await collectionRef.Document(userId).SetAsync(new { nickName = nickName });
                 return new OkObjectResult("Profile data saved successfully.");
             }
             catch (Exception ex)

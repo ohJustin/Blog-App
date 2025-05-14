@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Firestore.Services;
+using BlogAppBackendServices.Dto;
 
 namespace Firestore.Controllers
 {
@@ -28,12 +29,12 @@ namespace Firestore.Controllers
             }
         }
 
-        [HttpPost("profile")]
-        public async Task<IActionResult> SaveProfileAsync([FromBody] int userId, string nickName)
+        [HttpPost("nicknames")]
+        public async Task<IActionResult> SaveProfileAsync(ProfileDto profileDto)
         {
             try
             {
-                var result = await _firestoreService.SaveProfileAsync(userId, nickName);
+                var result = await _firestoreService.SaveProfileAsync(profileDto.userId, profileDto.nickName);
                 return Ok(result);
             }
 

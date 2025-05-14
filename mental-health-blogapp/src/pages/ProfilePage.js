@@ -1,17 +1,39 @@
 import React, { useState } from 'react';
 import { Box, Card, CardMedia, CardContent, CardActions, Typography, Button, TextField, Select, MenuItem, FormControl, InputLabel, Container, Grid } from '@mui/material';
 import headshot from '../assets/jayheadshots.jpg';
+import axiosInstance from '../services/axiosInstance';
+import { db, auth } from '../firebaseConfig.js';
 
 function ProfilePage() {
-  const [username, setUsername] = useState('@Jaydatech');
-  const [education, setEducation] = useState('');
-  const [wellnessInterests, setWellnessInterests] = useState('');
+  const [username, setUsername] = useState('username');
+  const [userId, setUserId] = useState(auth.currentUser.uid);
+  //const [education, setEducation] = useState('');
+  //const [wellnessInterests, setWellnessInterests] = useState('');
   const [isEdited, setIsEdited] = useState(false);
 
   const handleInputChange = (setter) => (event) => {
     setter(event.target.value);
     setIsEdited(true);
   };
+
+  const handleSave = async () => {
+    try 
+    {
+      const profileData = {
+        nickName: username,
+        userId
+        //education,
+        //wellnessInterests
+      }
+
+      const action = await axiosInstance.post('/api/firestore/nicknames', profileData);
+    }
+
+    catch (error)
+    {
+      console.error('Error saving profile:', error);
+    }
+  }
 
   return (
     <React.Fragment>
@@ -50,21 +72,6 @@ function ProfilePage() {
                   fullWidth
                   margin="normal"
                 />
-
-                <FormControl fullWidth margin="normal">
-                  <InputLabel>Education</InputLabel>
-                  <Select
-                    value={education}
-                    onChange={handleInputChange(setEducation)}
-                    label="Education"
-                  >
-                    <MenuItem value="None"><em>None</em></MenuItem>
-                    <MenuItem value="High School">High School</MenuItem>
-                    <MenuItem value="Bachelor's">Bachelor's</MenuItem>
-                    <MenuItem value="Master's">Master's</MenuItem>
-                    <MenuItem value="PhD">PhD</MenuItem>
-                  </Select>
-                </FormControl>
               </CardContent>
 
               <CardActions
@@ -75,21 +82,24 @@ function ProfilePage() {
                 }}
               >
                 <Button
+                  onClick={handleSave}
                   size="large"
                   sx={{
                     fontSize: '1rem',
                     borderRadius: '8px',
-                    backgroundColor: '#3f51b5',
+                    backgroundColor: '#4CAF50',
+                    width: '85px',
                     color: 'white',
                     '&:hover': {
                       backgroundColor: '#303f9f',
-                      boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)'
+                      boxShadow: '0px 4px 10px rgba(30, 187, 51, 0.2)'
                     }
                   }}
                   disabled={!isEdited}
                 >
                   Save
                 </Button>
+
                 <Button
                   size="large"
                   sx={{

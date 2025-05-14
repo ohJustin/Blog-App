@@ -7,21 +7,6 @@ import axiosInstance from '../services/axiosInstance';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-// Sample posts data
-
-//     id: 2,
-//     username: '@AnotherUser',
-//     userAvatar: '../assets/jayheadshots.jpg',
-//     content: 'This is another sample post content.',
-//     timeStamp: 'March 14, 2025',
-//     userId: 1
-
-//  title,
-//  content,
-//  timestamp: serverTimestamp(),
-//  userId: auth.currentUser.uid,
-
-
 function MainPage() {
   // uses useState to store the posts data
   const [posts, setPosts] = useState([]);
