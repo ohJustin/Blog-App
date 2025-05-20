@@ -22,13 +22,14 @@ function ProfilePage() {
     {
       try
       {
-        const response = await axiosInstance.get('/api/firestore/nicknames/${userId}');
-        if (response.data && response.data.nickName) {
-          setUsername(response.data.nickName);
-        } else {
-          setUsername('No nickname found');
-        }
+        const response = await axiosInstance.get(
+          '/api/firestore/nicknames/' + userId
+        );
+
+        // Check if the response contains the expected data
+        setUsername(response.data || 'No nickname found with userId');
       }
+      
       catch(error)
       {
         console.error('Error fetching nickname:', error);
